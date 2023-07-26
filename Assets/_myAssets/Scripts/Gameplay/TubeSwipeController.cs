@@ -53,8 +53,8 @@ namespace Assets._myAssets.Scripts.Gameplay
 
 		private void RotateObject(float rotationValue)
 		{
-			rotationValue = rotationValue >= 50 ? 50 : rotationValue;
-			rotationValue = rotationValue <= -50 ? -50 : rotationValue;
+			rotationValue = rotationValue >= 25 ? 25 : rotationValue;
+			rotationValue = rotationValue <= -25 ? -25 : rotationValue;
 
 			transform.Rotate(Vector3.forward, rotationValue, Space.World);
 		}
