@@ -302,10 +302,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca26026e2b6727749bcbccc75dd40f74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 8648012099629347739, guid: 02e03d760f9c86745a3c5d22200156ef, type: 3}
-  poolSize: 100
-  expandable: 1
-  pool: []
+  ballPrefab: {fileID: 8648012099629347739, guid: 02e03d760f9c86745a3c5d22200156ef, type: 3}
+  poolSize: 150
+  ballPool: []
+  ballColors:
+  - {r: 0.5272764, g: 1, b: 0, a: 1}
+  - {r: 1, g: 0.5609472, b: 0, a: 1}
+  - {r: 1, g: 0, b: 0.29279137, a: 1}
+  - {r: 1, g: 0, b: 0.9805198, a: 1}
+  - {r: 0.37342215, g: 0, b: 1, a: 1}
+  - {r: 0, g: 0.30626488, b: 1, a: 1}
+  - {r: 0, g: 0.8366351, b: 1, a: 1}
+  - {r: 0.6132076, g: 0.48638567, b: 0.23949802, a: 1}
+  - {r: 0.5283019, g: 0.32096833, b: 0.5068536, a: 1}
+  - {r: 0.58742213, g: 0.5943396, b: 0.57976145, a: 1}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0

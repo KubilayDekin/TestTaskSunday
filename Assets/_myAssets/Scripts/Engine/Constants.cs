@@ -8,6 +8,7 @@ namespace Assets._myAssets.Scripts.Engine
 		#region TAGS & LAYERS
 		public const string BALL_LAYER = "Ball";
 		public const string TUBE_DETECTOR_LAYER = "TubeDetector";
+		public const string CUP_LAYER = "Cup";
 		#endregion
 	}
 }

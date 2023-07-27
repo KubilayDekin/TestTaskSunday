@@ -7,14 +7,17 @@ namespace Assets._myAssets.Scripts.Gameplay
 {
 	public class BallPool : SingletonMonoBehaviour<BallPool>
 	{
-		public GameObject prefab;           // The prefab you want to pool
+		public GameObject ballPrefab;           // The prefab you want to pool
 		public int poolSize = 100;           // Number of objects to create in the pool initially
-		public bool expandable = true;      // Allow the pool to expand if needed
-		public List<GameObject> pool;       // The list that holds the pooled objects
+		[HideInInspector]
+		public List<GameObject> ballPool;       // The list that holds the pooled objects
+		public List<Color> ballColors;
 
-		private void Start()
+		protected override void Awake()
 		{
-			pool = new List<GameObject>();
+			base.Awake();
+
+			ballPool = new List<GameObject>();
 
 			for (int i = 0; i < poolSize; i++)
 			{
@@ -24,28 +27,21 @@ namespace Assets._myAssets.Scripts.Gameplay
 
 		private void CreatePooledObject()
 		{
-			GameObject obj = Instantiate(prefab);
+			GameObject obj = Instantiate(ballPrefab);
+			obj.GetComponent<Ball>().SetBallColor(ballColors[Random.Range(0, ballColors.Count)]);
 			obj.transform.parent = transform;
 			obj.SetActive(false);
-			pool.Add(obj);
+			ballPool.Add(obj);
 		}
 
 		public GameObject GetObjectFromPool()
 		{
-			for (int i = 0; i < pool.Count; i++)
+			for (int i = 0; i < ballPool.Count; i++)
 			{
-				if (!pool[i].activeInHierarchy)
+				if (!ballPool[i].activeInHierarchy)
 				{
-					return pool[i];
+					return ballPool[i];
 				}
-			}
-
-			if (expandable)
-			{
-				GameObject obj = Instantiate(prefab);
-				obj.SetActive(false);
-				pool.Add(obj);
-				return obj;
 			}
 
 			return null;
