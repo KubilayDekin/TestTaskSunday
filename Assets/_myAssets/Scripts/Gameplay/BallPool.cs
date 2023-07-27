@@ -25,6 +25,7 @@ namespace Assets._myAssets.Scripts.Gameplay
 		private void CreatePooledObject()
 		{
 			GameObject obj = Instantiate(prefab);
+			obj.transform.parent = transform;
 			obj.SetActive(false);
 			pool.Add(obj);
 		}
@@ -53,6 +54,7 @@ namespace Assets._myAssets.Scripts.Gameplay
 		public void ReturnObjectToPool(GameObject obj)
 		{
 			obj.SetActive(false);
+			obj.transform.parent = transform;
 		}
 	}
 }
