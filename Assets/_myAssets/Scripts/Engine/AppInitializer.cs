@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Assets._myAssets.Scripts.Gameplay
 {
@@ -10,6 +11,8 @@ namespace Assets._myAssets.Scripts.Gameplay
 		{
 			QualitySettings.vSyncCount = 0;
 			Application.targetFrameRate = 60;
+
+			SceneManager.LoadScene("UIScene", LoadSceneMode.Additive);
 		}
 	}
 }

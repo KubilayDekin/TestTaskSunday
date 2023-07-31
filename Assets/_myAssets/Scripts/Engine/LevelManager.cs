@@ -1,4 +1,5 @@
-﻿using Assets._myAssets.Scripts.Gameplay;
+﻿using Assets._myAssets.Scripts.Extensions;
+using Assets._myAssets.Scripts.Gameplay;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,23 +12,13 @@ namespace Assets._myAssets.Scripts.Engine
 		public LevelList levelList;
 		public int currentLevelIndex { get; private set; }
 
+		private SceneObject oldScene;
+
 		protected override void Awake()
 		{
 			base.Awake();
 
 			currentLevelIndex = PlayerPrefs.GetInt(Constants.CURRENT_LEVEL, 0);
-		}
-
-		private void OnEnable()
-		{
-			BusSystem.OnLevelCompleted += LoadNextLevel;
-			BusSystem.OnLevelFailed += ReloadLevel;
-		}
-
-		private void OnDisable()
-		{
-			BusSystem.OnLevelCompleted -= LoadNextLevel;
-			BusSystem.OnLevelFailed -= ReloadLevel;
 		}
 
 		void Start()
@@ -63,7 +54,11 @@ namespace Assets._myAssets.Scripts.Engine
 				}
 			}
 
-			SceneManager.LoadSceneAsync(levelList.levels[currentLevelIndex].levelScene.SceneName);
+			if(oldScene != null)
+				SceneManager.UnloadSceneAsync(oldScene);
+
+			oldScene = levelList.levels[currentLevelIndex].levelScene;
+			SceneManager.LoadSceneAsync(oldScene.SceneName, LoadSceneMode.Additive);
 		}
 	}
 }

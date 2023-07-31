@@ -11,6 +11,7 @@ namespace Assets._myAssets.Scripts.Gameplay
 	{
 		private int currentCountBallInsideCup;
 		private int totalDroppedBallCount;
+		private int totalBallCount;
 		private int targetBallCount;
 		private bool isWin;
 
@@ -29,6 +30,7 @@ namespace Assets._myAssets.Scripts.Gameplay
 		private void Start()
 		{
 			targetBallCount = LevelManager.Instance.levelList.levels[LevelManager.Instance.currentLevelIndex].levelAttributes.TargetBallCount;
+			totalBallCount = LevelManager.Instance.levelList.levels[LevelManager.Instance.currentLevelIndex].levelAttributes.BallSpawnCount;
 		}
 
 		private void HandleBallLost()
@@ -51,7 +53,7 @@ namespace Assets._myAssets.Scripts.Gameplay
 
 		private void CheckTotalBallCount()
 		{
-			if(totalDroppedBallCount >= targetBallCount)
+			if(totalDroppedBallCount >= totalBallCount)
 			{
 				if (isWin)
 					BusSystem.CallOnLevelCompleted();

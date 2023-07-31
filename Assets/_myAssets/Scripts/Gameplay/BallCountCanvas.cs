@@ -26,6 +26,7 @@ namespace Assets._myAssets.Scripts.Gameplay
 		{
 			targetBallCount = LevelManager.Instance.levelList.levels[LevelManager.Instance.currentLevelIndex].levelAttributes.TargetBallCount;
 			ballCountText = GetComponentInChildren<TextMeshProUGUI>();
+			HandleOnBallEnterCup(0);
 		}
 
 		private void HandleOnBallEnterCup(int ballCount)
