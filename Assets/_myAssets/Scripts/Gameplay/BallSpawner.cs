@@ -10,18 +10,21 @@ namespace Assets._myAssets.Scripts.Gameplay
 	{
 		[Header("References")]
 		[SerializeField] private GameObject ballPrefab;
-		[SerializeField] private int numberOfBalls;
+
+		private int ballCountToSpawn;
 
 		private void Start()
 		{
+			ballCountToSpawn = LevelManager.Instance.levelList.levels[LevelManager.Instance.currentLevelIndex].levelAttributes.BallSpawnCount;
+
 			SpawnBalls();
 		}
 
 		private void SpawnBalls()
 		{
-			List<Vector3> points = GenerateSpherePoints(numberOfBalls);
+			List<Vector3> points = GenerateSpherePoints(ballCountToSpawn);
 
-			for(int i = 0; i < numberOfBalls; i++)
+			for(int i = 0; i < ballCountToSpawn; i++)
 			{
 				GameObject ball = BallPool.Instance.GetObjectFromPool();
 				ball.transform.position = points[i];

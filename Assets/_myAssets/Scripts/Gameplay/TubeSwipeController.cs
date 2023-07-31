@@ -11,7 +11,6 @@ namespace Assets._myAssets.Scripts.Gameplay
 
 		void Update()
 		{
-			// Mobil cihazda dokunmatik kontrolleri almak için
 			if (Input.touchCount > 0)
 			{
 				Touch touch = Input.GetTouch(0);
@@ -33,7 +32,6 @@ namespace Assets._myAssets.Scripts.Gameplay
 				}
 			}
 
-			// Bilgisayarda fare kontrolleri almak için
 			if (Input.GetMouseButtonDown(0))
 			{
 				lastMousePosition = Input.mousePosition;

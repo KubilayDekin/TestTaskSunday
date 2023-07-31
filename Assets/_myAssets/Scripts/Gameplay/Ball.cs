@@ -8,22 +8,39 @@ namespace Assets._myAssets.Scripts.Gameplay
 	public class Ball : MonoBehaviour
 	{
 		private MeshRenderer meshRenderer;
+		private bool isInactive;
 
 		private void Awake()
 		{
 			meshRenderer = GetComponent<MeshRenderer>();	
 		}
 
-		private void OnDestroy()
+		private void OnDisable()
 		{
-			BallPool.Instance.ReturnObjectToPool(gameObject);
+			isInactive = false;
 		}
 
 		private void OnTriggerEnter(Collider other)
 		{
+			if (isInactive)
+				return;
+
 			if (other.gameObject.layer == LayerMask.NameToLayer(Constants.CUP_LAYER))
 			{
-				BusSystem.CallOnBallEnterCup();
+				isInactive = true;
+				BusSystem.CallBallEnterCup();
+			}
+		}
+
+		private void OnCollisionEnter(Collision collision)
+		{
+			if (isInactive)
+				return;
+
+			if (collision.gameObject.layer == LayerMask.NameToLayer(Constants.GROUND_LAYER))
+			{
+				isInactive = true;
+				BusSystem.CallBallLost();
 			}
 		}
 

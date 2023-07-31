@@ -9,7 +9,26 @@ namespace Assets._myAssets.Scripts.Engine
 	public class LevelManager : SingletonMonoBehaviour<LevelManager>
 	{
 		public LevelList levelList;
-		private int currentLevelIndex = 0;
+		public int currentLevelIndex { get; private set; }
+
+		protected override void Awake()
+		{
+			base.Awake();
+
+			currentLevelIndex = PlayerPrefs.GetInt(Constants.CURRENT_LEVEL, 0);
+		}
+
+		private void OnEnable()
+		{
+			BusSystem.OnLevelCompleted += LoadNextLevel;
+			BusSystem.OnLevelFailed += ReloadLevel;
+		}
+
+		private void OnDisable()
+		{
+			BusSystem.OnLevelCompleted -= LoadNextLevel;
+			BusSystem.OnLevelFailed -= ReloadLevel;
+		}
 
 		void Start()
 		{
@@ -19,12 +38,14 @@ namespace Assets._myAssets.Scripts.Engine
 		public void LoadNextLevel()
 		{
 			currentLevelIndex++;
+
 			if (currentLevelIndex >= levelList.levels.Count)
 			{
-				return;
+				currentLevelIndex = 0;
 			}
 
 			LoadCurrentLevel();
+			PlayerPrefs.SetInt(Constants.CURRENT_LEVEL, currentLevelIndex);
 		}
 
 		public void ReloadLevel()
@@ -34,7 +55,15 @@ namespace Assets._myAssets.Scripts.Engine
 
 		private void LoadCurrentLevel()
 		{
-			SceneManager.LoadSceneAsync(levelList.levels[currentLevelIndex].SceneName);
+			foreach(GameObject ball in BallPool.Instance.ballPool)
+			{
+				if (ball.activeSelf)
+				{
+					BallPool.Instance.ReturnObjectToPool(ball);
+				}
+			}
+
+			SceneManager.LoadSceneAsync(levelList.levels[currentLevelIndex].levelScene.SceneName);
 		}
 	}
 }

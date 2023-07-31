@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a077556c87aa2f04389a2dedabefe52a, type: 3}
-  m_Name: LevelList
+  m_Script: {fileID: 11500000, guid: 7756025b549166b4b8ef7422975a324c, type: 3}
+  m_Name: Level2_Attributes
   m_EditorClassIdentifier: 
-  levels:
-  - SceneName: Level1
-  - SceneName: Level2
-  - SceneName: Level3
+  BallSpawnCount: 35
+  TargetBallCount: 30
