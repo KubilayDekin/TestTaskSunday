@@ -1,4 +1,5 @@
 using Assets._myAssets.Scripts.Engine;
+using Assets._myAssets.Scripts.LevelDesign;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,11 +8,26 @@ namespace Assets._myAssets.Scripts.Gameplay
 {
 	public class Ball : MonoBehaviour
 	{
+		public GameSettings gameSettings;
+
+		private Collider col;
 		private MeshRenderer meshRenderer;
 		private bool isInactive;
 
 		private void Awake()
 		{
+			PhysicMaterial physicsMaterial = new PhysicMaterial();
+
+			physicsMaterial.staticFriction = gameSettings.staticFriction;
+			physicsMaterial.dynamicFriction = gameSettings.dynamicFriction;
+			physicsMaterial.bounciness = gameSettings.bounciness;
+
+			physicsMaterial.frictionCombine = gameSettings.frictionCombine;
+			physicsMaterial.bounceCombine = gameSettings.bouncinessCombine;
+
+			col=GetComponent<Collider>();
+			col.material = physicsMaterial;
+
 			meshRenderer = GetComponent<MeshRenderer>();	
 		}
 

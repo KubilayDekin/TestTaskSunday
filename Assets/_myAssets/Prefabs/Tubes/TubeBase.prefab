@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2ef5f854c198f44ab7bd39b9e888575, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 10
+  gameSettings: {fileID: 11400000, guid: ef39aad826201ff4185f20a6ba06dd5b, type: 2}
 --- !u!1 &8546529090313328654
 GameObject:
   m_ObjectHideFlags: 0
@@ -144,4 +144,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballPrefab: {fileID: 8648012099629347739, guid: 02e03d760f9c86745a3c5d22200156ef, type: 3}
-  numberOfBalls: 0

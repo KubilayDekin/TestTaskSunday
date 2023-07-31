@@ -1,11 +1,13 @@
-﻿using System.Collections;
+﻿using Assets._myAssets.Scripts.LevelDesign;
+using System.Collections;
 using UnityEngine;
 
 namespace Assets._myAssets.Scripts.Gameplay
 {
 	public class TubeSwipeController : MonoBehaviour
 	{
-		public float rotationSpeed = 10f;
+		public GameSettings gameSettings;
+
 		private Vector3 lastMousePosition;
 		private bool isDragging = false;
 
@@ -22,7 +24,7 @@ namespace Assets._myAssets.Scripts.Gameplay
 				}
 				else if (touch.phase == TouchPhase.Moved)
 				{
-					float rotationValue = (touch.position.x - lastMousePosition.x) * rotationSpeed * Time.deltaTime;
+					float rotationValue = (touch.position.x - lastMousePosition.x) * gameSettings.tubeRotationSpeed * Time.deltaTime;
 					RotateObject(rotationValue);
 					lastMousePosition = touch.position;
 				}
@@ -39,7 +41,7 @@ namespace Assets._myAssets.Scripts.Gameplay
 			}
 			else if (Input.GetMouseButton(0) && isDragging)
 			{
-				float rotationValue = (Input.mousePosition.x - lastMousePosition.x) * rotationSpeed * Time.deltaTime;
+				float rotationValue = (Input.mousePosition.x - lastMousePosition.x) * gameSettings.tubeRotationSpeed * Time.deltaTime;
 				RotateObject(rotationValue);
 				lastMousePosition = Input.mousePosition;
 			}
