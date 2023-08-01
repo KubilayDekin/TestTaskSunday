@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7756025b549166b4b8ef7422975a324c, type: 3}
   m_Name: Level3_Attributes
   m_EditorClassIdentifier: 
-  BallSpawnCount: 50
-  TargetBallCount: 40
+  BallSpawnCount: 80
+  TargetBallCount: 70

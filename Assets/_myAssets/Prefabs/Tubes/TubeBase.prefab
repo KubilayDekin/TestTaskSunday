@@ -96,7 +96,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6847947634231794543}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2ef5f854c198f44ab7bd39b9e888575, type: 3}
+  m_Script: {fileID: 11500000, guid: ef3381ec33b608e488a84cee6332f982, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gameSettings: {fileID: 11400000, guid: ef39aad826201ff4185f20a6ba06dd5b, type: 2}
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8546529090313328654}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e23d90e556e1dac45aea49b188c62ccb, type: 3}
+  m_Script: {fileID: 11500000, guid: 4f9f43fe6e8025c4ba06e3b5b9bd441f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ballPrefab: {fileID: 8648012099629347739, guid: 02e03d760f9c86745a3c5d22200156ef, type: 3}
