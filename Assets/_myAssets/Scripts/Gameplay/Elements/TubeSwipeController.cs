@@ -12,6 +12,7 @@ namespace Assets._myAssets.Scripts.Gameplay.Elements
 
 		void Update()
 		{
+#if !UNITY_EDITOR
 			if (Input.touchCount > 0)
 			{
 				Touch touch = Input.GetTouch(0);
@@ -33,6 +34,7 @@ namespace Assets._myAssets.Scripts.Gameplay.Elements
 				}
 			}
 
+#else
 			if (Input.GetMouseButtonDown(0))
 			{
 				lastMousePosition = Input.mousePosition;
@@ -48,6 +50,7 @@ namespace Assets._myAssets.Scripts.Gameplay.Elements
 			{
 				isDragging = false;
 			}
+#endif
 		}
 
 		private void RotateObject(float rotationValue)
