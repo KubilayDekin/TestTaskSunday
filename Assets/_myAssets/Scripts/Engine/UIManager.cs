@@ -25,13 +25,11 @@ namespace Assets._myAssets.Scripts.Engine
 		private void HandleOnLevelCompleted()
 		{
 			youWinCanvas.enabled = true;
-			Debug.LogError("Win");
 		}
 
 		private void HandleOnLevelFailed()
 		{
 			youLostCanvas.enabled = true;
-			Debug.LogError("Lost");
 		}
 	}
 }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Assets._myAssets.Scripts.LevelDesign
 {
@@ -15,5 +16,8 @@ namespace Assets._myAssets.Scripts.LevelDesign
 
 		[Header("Tube Settings")]
 		public float tubeRotationSpeed;
+
+		[Header("Ball Settings")]
+		public List<Color> ballColors;
 	}
 }

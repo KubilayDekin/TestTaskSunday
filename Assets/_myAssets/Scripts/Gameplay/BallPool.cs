@@ -1,4 +1,5 @@
 ﻿using Assets._myAssets.Scripts.Engine;
+using Assets._myAssets.Scripts.LevelDesign;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,11 +8,12 @@ namespace Assets._myAssets.Scripts.Gameplay
 {
 	public class BallPool : SingletonMonoBehaviour<BallPool>
 	{
+		public GameSettings gameSettings;
+
 		public GameObject ballPrefab;           // The prefab you want to pool
 		public int poolSize = 100;           // Number of objects to create in the pool initially
 		[HideInInspector]
 		public List<GameObject> ballPool;       // The list that holds the pooled objects
-		public List<Color> ballColors;
 
 		protected override void Awake()
 		{
@@ -28,7 +30,7 @@ namespace Assets._myAssets.Scripts.Gameplay
 		private void CreatePooledObject()
 		{
 			GameObject obj = Instantiate(ballPrefab);
-			obj.GetComponent<Ball>().SetBallColor(ballColors[Random.Range(0, ballColors.Count)]);
+			obj.GetComponent<Ball>().SetBallColor(gameSettings.ballColors[Random.Range(0, gameSettings.ballColors.Count)]);
 			obj.transform.parent = transform;
 			obj.SetActive(false);
 			ballPool.Add(obj);

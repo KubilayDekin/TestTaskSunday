@@ -11,28 +11,28 @@ namespace Assets._myAssets.Scripts.Gameplay
 		public GameSettings gameSettings;
 
 		private Collider col;
+		private Rigidbody rb;
 		private MeshRenderer meshRenderer;
 		private bool isInactive;
 
 		private void Awake()
 		{
-			PhysicMaterial physicsMaterial = new PhysicMaterial();
+			rb = GetComponent<Rigidbody>();
+			col = GetComponent<Collider>();
 
-			physicsMaterial.staticFriction = gameSettings.staticFriction;
-			physicsMaterial.dynamicFriction = gameSettings.dynamicFriction;
-			physicsMaterial.bounciness = gameSettings.bounciness;
-
-			physicsMaterial.frictionCombine = gameSettings.frictionCombine;
-			physicsMaterial.bounceCombine = gameSettings.bouncinessCombine;
-
-			col=GetComponent<Collider>();
-			col.material = physicsMaterial;
+			SetDefaultBallPhysics();
 
 			meshRenderer = GetComponent<MeshRenderer>();	
 		}
 
+		private void OnEnable()
+		{
+			StartCoroutine(SleepAtStart());
+		}
+
 		private void OnDisable()
 		{
+			SetDefaultBallPhysics();
 			isInactive = false;
 		}
 
@@ -64,6 +64,7 @@ namespace Assets._myAssets.Scripts.Gameplay
 		{
 			if (other.gameObject.layer == LayerMask.NameToLayer(Constants.TUBE_DETECTOR_LAYER))
 			{
+				SetInCupBallPhysics();
 				transform.parent = null;
 			}
 		}
@@ -71,6 +72,43 @@ namespace Assets._myAssets.Scripts.Gameplay
 		public void SetBallColor(Color ballColor)
 		{
 			meshRenderer.material.color = ballColor;
+		}
+
+		private IEnumerator SleepAtStart()
+		{
+			rb.drag = 50;
+
+			yield return new WaitForSeconds(0.1f);
+
+			rb.drag = 0.05f;
+		}
+
+		private void SetDefaultBallPhysics()
+		{
+			PhysicMaterial physicsMaterial = new PhysicMaterial();
+
+			physicsMaterial.staticFriction = gameSettings.staticFriction;
+			physicsMaterial.dynamicFriction = gameSettings.dynamicFriction;
+			physicsMaterial.bounciness = gameSettings.bounciness;
+
+			physicsMaterial.frictionCombine = gameSettings.frictionCombine;
+			physicsMaterial.bounceCombine = gameSettings.bouncinessCombine;
+
+			col.material = physicsMaterial;
+		}
+
+		private void SetInCupBallPhysics()
+		{
+			PhysicMaterial physicsMaterial = new PhysicMaterial();
+
+			physicsMaterial.staticFriction = 0.25f;
+			physicsMaterial.dynamicFriction = 0.25f;
+			physicsMaterial.bounciness = 0;
+
+			physicsMaterial.frictionCombine = PhysicMaterialCombine.Maximum;
+			physicsMaterial.bounceCombine = PhysicMaterialCombine.Minimum;
+
+			col.material = physicsMaterial;
 		}
 	}
 }
