@@ -1,11 +1,7 @@
 using Assets._myAssets.Scripts.Engine;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
-namespace Assets._myAssets.Scripts.Gameplay
+namespace Assets._myAssets.Scripts.Gameplay.Elements
 {
 	public class Cup : MonoBehaviour
 	{

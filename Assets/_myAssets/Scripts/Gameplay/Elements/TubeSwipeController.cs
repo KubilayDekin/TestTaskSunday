@@ -1,8 +1,7 @@
 ﻿using Assets._myAssets.Scripts.LevelDesign;
-using System.Collections;
 using UnityEngine;
 
-namespace Assets._myAssets.Scripts.Gameplay
+namespace Assets._myAssets.Scripts.Gameplay.Elements
 {
 	public class TubeSwipeController : MonoBehaviour
 	{

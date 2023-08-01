@@ -1,10 +1,8 @@
 ﻿using Assets._myAssets.Scripts.Engine;
-using System;
-using System.Collections;
 using TMPro;
 using UnityEngine;
 
-namespace Assets._myAssets.Scripts.Gameplay
+namespace Assets._myAssets.Scripts.Gameplay.UI
 {
 	public class BallCountCanvas : MonoBehaviour
 	{

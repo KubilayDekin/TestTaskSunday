@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets._myAssets.Scripts.Gameplay
+namespace Assets._myAssets.Scripts.Gameplay.Elements
 {
 	public class Ball : MonoBehaviour
 	{
@@ -27,7 +27,7 @@ namespace Assets._myAssets.Scripts.Gameplay
 
 		private void OnEnable()
 		{
-			StartCoroutine(SleepAtStart());
+			StartCoroutine(HandleOnEnable());
 		}
 
 		private void OnDisable()
@@ -74,7 +74,7 @@ namespace Assets._myAssets.Scripts.Gameplay
 			meshRenderer.material.color = ballColor;
 		}
 
-		private IEnumerator SleepAtStart()
+		private IEnumerator HandleOnEnable()
 		{
 			rb.drag = 50;
 

@@ -1,10 +1,9 @@
 ﻿using Assets._myAssets.Scripts.Engine;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
-namespace Assets._myAssets.Scripts.Gameplay
+namespace Assets._myAssets.Scripts.Gameplay.Elements
 {
 	public class BallSpawner : MonoBehaviour
 	{

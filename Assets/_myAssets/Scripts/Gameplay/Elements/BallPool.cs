@@ -1,10 +1,9 @@
-﻿using Assets._myAssets.Scripts.Engine;
+﻿using Assets._myAssets.Scripts.Extensions;
 using Assets._myAssets.Scripts.LevelDesign;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets._myAssets.Scripts.Gameplay
+namespace Assets._myAssets.Scripts.Gameplay.Elements
 {
 	public class BallPool : SingletonMonoBehaviour<BallPool>
 	{

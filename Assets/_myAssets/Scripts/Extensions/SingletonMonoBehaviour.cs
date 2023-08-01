@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Assets._myAssets.Scripts.Engine
+namespace Assets._myAssets.Scripts.Extensions
 {
 	public class SingletonMonoBehaviour<T> : MonoBehaviour where T : MonoBehaviour
 	{

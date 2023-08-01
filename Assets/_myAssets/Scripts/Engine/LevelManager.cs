@@ -1,7 +1,5 @@
 ﻿using Assets._myAssets.Scripts.Extensions;
-using Assets._myAssets.Scripts.Gameplay;
-using System.Collections;
-using System.Collections.Generic;
+using Assets._myAssets.Scripts.Gameplay.Elements;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

@@ -1,8 +1,7 @@
 ﻿using Assets._myAssets.Scripts.Engine;
-using System.Collections;
 using UnityEngine;
 
-namespace Assets._myAssets.Scripts.Gameplay
+namespace Assets._myAssets.Scripts.Gameplay.UI
 {
 	public class PressToContinueButton : MonoBehaviour
 	{

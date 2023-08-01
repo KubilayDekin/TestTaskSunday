@@ -1,5 +1,4 @@
 ﻿using Assets._myAssets.Scripts.Extensions;
-using System.Collections;
 using UnityEngine;
 
 namespace Assets._myAssets.Scripts.LevelDesign

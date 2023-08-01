@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
-
-namespace Assets._myAssets.Scripts.Engine
+﻿namespace Assets._myAssets.Scripts.Engine
 {
 	public static class Constants
 	{
