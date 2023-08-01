@@ -7,12 +7,10 @@ namespace Assets._myAssets.Scripts.LevelDesign
 	public class GameSettings : ScriptableObject
 	{
 		[Header("Ball Physics")]
-		public float dynamicFriction;
-		public float staticFriction;
-		public float bounciness;
-
-		public PhysicMaterialCombine frictionCombine;
-		public PhysicMaterialCombine bouncinessCombine;
+		[Range(0f,1f)]
+		public float ballSlipperiness;
+		[Range(0f, 1f)]
+		public float ballBounciness;
 
 		[Header("Tube Settings")]
 		public float tubeRotationSpeed;

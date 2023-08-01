@@ -87,12 +87,44 @@ namespace Assets._myAssets.Scripts.Gameplay.Elements
 		{
 			PhysicMaterial physicsMaterial = new PhysicMaterial();
 
-			physicsMaterial.staticFriction = gameSettings.staticFriction;
-			physicsMaterial.dynamicFriction = gameSettings.dynamicFriction;
-			physicsMaterial.bounciness = gameSettings.bounciness;
+			float staticFriction = 1 - gameSettings.ballSlipperiness;
+			float dynamicFriction = 1 - gameSettings.ballSlipperiness;
+			float bouncieness = gameSettings.ballBounciness;
+			PhysicMaterialCombine frictionCombine;
+			PhysicMaterialCombine bouncinessCombine;
 
-			physicsMaterial.frictionCombine = gameSettings.frictionCombine;
-			physicsMaterial.bounceCombine = gameSettings.bouncinessCombine;
+			if (gameSettings.ballSlipperiness < 0.25f)
+			{
+				frictionCombine = PhysicMaterialCombine.Maximum;
+			}
+			else if (gameSettings.ballSlipperiness>=0.25f && gameSettings.ballSlipperiness < 0.75f)
+			{
+				frictionCombine = PhysicMaterialCombine.Average;
+			}
+			else
+			{
+				frictionCombine = PhysicMaterialCombine.Minimum;
+			}
+
+			if (gameSettings.ballBounciness < 0.25f)
+			{
+				bouncinessCombine = PhysicMaterialCombine.Minimum;
+			}
+			else if (gameSettings.ballBounciness >= 0.25f && gameSettings.ballBounciness < 0.75f)
+			{
+				bouncinessCombine = PhysicMaterialCombine.Average;
+			}
+			else
+			{
+				bouncinessCombine = PhysicMaterialCombine.Maximum;
+			}
+
+			physicsMaterial.staticFriction = staticFriction;
+			physicsMaterial.dynamicFriction = dynamicFriction;
+			physicsMaterial.bounciness = bouncieness;
+
+			physicsMaterial.frictionCombine = frictionCombine;
+			physicsMaterial.bounceCombine = bouncinessCombine;
 
 			col.material = physicsMaterial;
 		}

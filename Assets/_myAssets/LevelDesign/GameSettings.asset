@@ -12,11 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e3ff1bc8af9ee9469fab07db8a40966, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: 
-  dynamicFriction: 0.1
-  staticFriction: 0.1
-  bounciness: 0
-  frictionCombine: 2
-  bouncinessCombine: 0
+  ballSlipperiness: 1
+  ballBouncieness: 0
   tubeRotationSpeed: 10
   ballColors:
   - {r: 1, g: 0, b: 0, a: 1}
