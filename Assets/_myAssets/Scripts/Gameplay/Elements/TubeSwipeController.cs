@@ -1,58 +1,62 @@
 ﻿using Assets._myAssets.Scripts.LevelDesign;
 using UnityEngine;
 
-public class TubeSwipeController : MonoBehaviour
+namespace Assets._myAssets.Scripts.Gameplay.Elements
 {
-	public GameSettings gameSettings;
-
-	private float previousAngle;
-	private float rotationSpeed;
-	private bool isFirstClick;
-
-	private void Start()
+	public class TubeSwipeController : MonoBehaviour
 	{
-		rotationSpeed = gameSettings.tubeRotationSpeed;
-	}
+		public GameSettings gameSettings;
 
-	private void Update()
-	{
-		if (Input.GetMouseButtonDown(0))
+		private float previousAngle;
+		private float rotationSpeed;
+		private bool isFirstClick;
+
+		private void Start()
 		{
-			isFirstClick = true;
+			rotationSpeed = gameSettings.tubeRotationSpeed;
 		}
 
-		if (Input.GetMouseButton(0))
+		private void Update()
 		{
-			Vector3 mousePosition = Input.mousePosition;
-			mousePosition.z = -Camera.main.transform.position.z; // Convert to World coordinates
-			Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-
-			Vector3 direction = worldPosition - transform.position;
-			float currentAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-			if (currentAngle < 0f)
+			if (Input.GetMouseButtonDown(0))
 			{
-				currentAngle += 360f;
+				isFirstClick = true;
 			}
 
-			float deltaAngle = currentAngle - previousAngle;
-			if (deltaAngle < 0f)
+			if (Input.GetMouseButton(0))
 			{
-				deltaAngle += 360f;
-			}
+				Vector3 mousePosition = Input.mousePosition;
+				mousePosition.z = -Camera.main.transform.position.z;
+				Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
-			previousAngle = currentAngle;
+				Vector3 direction = worldPosition - transform.position;
+				float currentAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-			if (isFirstClick)
-			{
-				isFirstClick = false;
-				return;
-			}
+				if (currentAngle < 0f)
+				{
+					currentAngle += 360f;
+				}
 
-			if (deltaAngle != 0)
-			{
-				transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime * (deltaAngle > 180 ? -(360 - deltaAngle) : deltaAngle));
+				float deltaAngle = currentAngle - previousAngle;
+				if (deltaAngle < 0f)
+				{
+					deltaAngle += 360f;
+				}
+
+				previousAngle = currentAngle;
+
+				if (isFirstClick)
+				{
+					isFirstClick = false;
+					return;
+				}
+
+				if (deltaAngle != 0)
+				{
+					transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime * (deltaAngle > 180 ? -(360 - deltaAngle) : deltaAngle));
+				}
 			}
 		}
 	}
 }
+

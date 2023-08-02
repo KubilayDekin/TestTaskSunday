@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ballSlipperiness: 1
   ballBounciness: 0
-  tubeRotationSpeed: 20
+  tubeRotationSpeed: 30
   ballColors:
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 1, g: 0, b: 0.8289714, a: 1}
