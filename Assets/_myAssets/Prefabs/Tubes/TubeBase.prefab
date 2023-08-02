@@ -63,7 +63,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6323245781237478523}
-  - component: {fileID: 2581881296722010090}
+  - component: {fileID: 5488002261844111138}
   m_Layer: 0
   m_Name: TubeBase
   m_TagString: Untagged
@@ -87,7 +87,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2581881296722010090
+--- !u!114 &5488002261844111138
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

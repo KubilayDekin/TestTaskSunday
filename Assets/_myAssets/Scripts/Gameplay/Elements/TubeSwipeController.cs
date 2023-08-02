@@ -1,64 +1,58 @@
 ﻿using Assets._myAssets.Scripts.LevelDesign;
 using UnityEngine;
 
-namespace Assets._myAssets.Scripts.Gameplay.Elements
+public class TubeSwipeController : MonoBehaviour
 {
-	public class TubeSwipeController : MonoBehaviour
+	public GameSettings gameSettings;
+
+	private float previousAngle;
+	private float rotationSpeed;
+	private bool isFirstClick;
+
+	private void Start()
 	{
-		public GameSettings gameSettings;
+		rotationSpeed = gameSettings.tubeRotationSpeed;
+	}
 
-		private Vector3 lastMousePosition;
-		private bool isDragging = false;
-
-		void Update()
+	private void Update()
+	{
+		if (Input.GetMouseButtonDown(0))
 		{
-#if !UNITY_EDITOR
-			if (Input.touchCount > 0)
-			{
-				Touch touch = Input.GetTouch(0);
-
-				if (touch.phase == TouchPhase.Began)
-				{
-					lastMousePosition = touch.position;
-					isDragging = true;
-				}
-				else if (touch.phase == TouchPhase.Moved)
-				{
-					float rotationValue = (touch.position.x - lastMousePosition.x) * gameSettings.tubeRotationSpeed * Time.deltaTime;
-					RotateObject(rotationValue);
-					lastMousePosition = touch.position;
-				}
-				else if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
-				{
-					isDragging = false;
-				}
-			}
-
-#else
-			if (Input.GetMouseButtonDown(0))
-			{
-				lastMousePosition = Input.mousePosition;
-				isDragging = true;
-			}
-			else if (Input.GetMouseButton(0) && isDragging)
-			{
-				float rotationValue = (Input.mousePosition.x - lastMousePosition.x) * gameSettings.tubeRotationSpeed * Time.deltaTime;
-				RotateObject(rotationValue);
-				lastMousePosition = Input.mousePosition;
-			}
-			else if (Input.GetMouseButtonUp(0))
-			{
-				isDragging = false;
-			}
-#endif
+			isFirstClick = true;
 		}
 
-		private void RotateObject(float rotationValue)
+		if (Input.GetMouseButton(0))
 		{
-			rotationValue = rotationValue >= 25 ? 25 : rotationValue;
-			rotationValue = rotationValue <= -25 ? -25 : rotationValue;
+			Vector3 mousePosition = Input.mousePosition;
+			mousePosition.z = -Camera.main.transform.position.z; // Convert to World coordinates
+			Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
-			transform.Rotate(Vector3.forward, rotationValue, Space.World);
+			Vector3 direction = worldPosition - transform.position;
+			float currentAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+			if (currentAngle < 0f)
+			{
+				currentAngle += 360f;
+			}
+
+			float deltaAngle = currentAngle - previousAngle;
+			if (deltaAngle < 0f)
+			{
+				deltaAngle += 360f;
+			}
+
+			previousAngle = currentAngle;
+
+			if (isFirstClick)
+			{
+				isFirstClick = false;
+				return;
+			}
+
+			if (deltaAngle != 0)
+			{
+				transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime * (deltaAngle > 180 ? -(360 - deltaAngle) : deltaAngle));
+			}
 		}
 	}
 }

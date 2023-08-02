@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: GameSettings
   m_EditorClassIdentifier: 
   ballSlipperiness: 1
-  ballBouncieness: 0
-  tubeRotationSpeed: 10
+  ballBounciness: 0
+  tubeRotationSpeed: 20
   ballColors:
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 1, g: 0, b: 0.8289714, a: 1}
